@@ -218,29 +218,50 @@ def user_stats(df):
 
 def main():
     while True:
+        # Get user input for filters
         city, month, day = get_filters()
+
+        # Load and filter data
         df = load_data(city.lower(), month.lower(), day.lower())
 
-        time_stats(df)
-        station_stats(df)
-        trip_duration_stats(df)
-        user_stats(df)
+        # Display statistics
+        display_statistics(df)
 
-        data = input('\nWould you like to view individual data ? Enter yes or no.\n')
-        cnt = 5
-        while data.lower() == 'yes':
-            print(df.head(cnt))
-            cnt += 5
-            data = input('\nWould you like to view individual data ? Enter yes or no.\n')
-            if cnt >= len(df):
-                print(df.head(cnt))
-                print('That\'s all the data')
-                break
+        # Offer to view individual data
+        view_individual_data(df)
 
-        restart = input('\nWould you like to restart? Enter yes or no.\n')
-        if restart.lower() != 'yes':
+        # Ask if the user wants to restart
+        if not ask_to_restart():
             break
 
 
+def display_statistics(df):
+    """Displays all statistics for the dataset."""
+    time_stats(df)
+    station_stats(df)
+    trip_duration_stats(df)
+    user_stats(df)
+
+
+def view_individual_data(df):
+    """Allows the user to view individual rows of the dataset."""
+    data = input('\nWould you like to view individual data? Enter yes or no.\n')
+    cnt = 5
+    while data.lower() == 'yes':
+        print(df.head(cnt))
+        cnt += 5
+        if cnt >= len(df):
+            print(df.head(cnt))
+            print("That's all the data.")
+            break
+        data = input('\nWould you like to view more individual data? Enter yes or no.\n')
+
+
+def ask_to_restart():
+    """Asks the user if they want to restart the program."""
+    restart = input('\nWould you like to restart? Enter yes or no.\n')
+    return restart.lower() == 'yes'
+
+
 if __name__ == "__main__":
-	main()
+    main()
