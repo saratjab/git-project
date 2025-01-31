@@ -58,5 +58,3 @@ Each dataset includes information such as start time, end time, trip duration, s
 ## License
 This project is for educational purposes and follows an open-source license.
 
-## Contributing
-If you'd like to contribute to this project, feel free to fork the repository and submit a pull request with your improvements.

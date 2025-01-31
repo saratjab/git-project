@@ -234,7 +234,7 @@ def main():
         trip_duration_stats(df)
         user_stats(df)
 
-        data = input('\nWould you like to view individual data ? Enter yes or no.\n')
+        data = input('\nWould you like to view individual data ?[yes or no].\n')
         cnt = 5
         while data.lower() == 'yes':
             print(df.head(cnt))
