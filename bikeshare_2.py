@@ -80,44 +80,34 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
+    # Load the data for the specified city
     df = pd.read_csv(CITY_DATA[city])
+
+    # Convert 'Start Time' to datetime and extract month and day names
     df['Start Time'] = pd.to_datetime(df['Start Time'])
     df['Month'] = df['Start Time'].dt.month_name()
-
-    month_num = 0
-    if month == 'jan':
-        month_num = 1
-    elif month == 'feb':
-        month_num = 2
-    elif month == 'mar':
-        month_num = 3
-    elif month == 'apr':
-        month_num = 4
-    elif month == 'may':
-        month_num = 5
-    elif month == 'june':
-        month_num = 6
-
-    if month_num != 0:
-        df = df[df['Start Time'].dt.month == month_num]
-
-
     df['Day'] = df['Start Time'].dt.day_name()
 
-    if day == 'su':
-        df = df[df['Day'] == 'Sunday']
-    elif day == 'mo':
-        df = df[df['Day'] == 'Monday']
-    elif day == 'tu':
-        df = df[df['Day'] == 'Tuesday']
-    elif day == 'we':
-        df = df[df['Day'] == 'Wednesday']
-    elif day == 'th':
-        df = df[df['Day'] == 'Thursday']
-    elif day == 'fr':
-        df = df[df['Day'] == 'Friday']
-    elif day == 'sa':
-        df = df[df['Day'] == 'Saturday']
+    # Filter by month if applicable
+    if month != 'all':
+        month_mapping = {
+            'jan': 'January', 'feb': 'February', 'mar': 'March',
+            'apr': 'April', 'may': 'May', 'june': 'June'
+        }
+        month_name = month_mapping.get(month.lower(), None)
+        if month_name:
+            df = df[df['Month'] == month_name]
+
+    # Filter by day if applicable
+    if day != 'all':
+        day_mapping = {
+            'su': 'Sunday', 'mo': 'Monday', 'tu': 'Tuesday',
+            'we': 'Wednesday', 'th': 'Thursday', 'fr': 'Friday',
+            'sa': 'Saturday'
+        }
+        day_name = day_mapping.get(day.lower(), None)
+        if day_name:
+            df = df[df['Day'] == day_name]
 
     return df
 
