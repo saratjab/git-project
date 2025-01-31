@@ -25,6 +25,7 @@ Each dataset includes information such as start time, end time, trip duration, s
 
 - **Interactive Data Viewing:**
   - Users can view raw data in increments of 5 rows upon request.
+  - The program provides an option to continue viewing additional data.
 
 ## Installation & Setup
 1. Ensure you have Python installed (recommended version: 3.x).
@@ -32,4 +33,30 @@ Each dataset includes information such as start time, end time, trip duration, s
    ```bash
    pip install pandas numpy
    ```
-3. Pl
+3. Place the dataset CSV files in the same directory as the script.
+4. Run the script:
+   ```bash
+   python bikeshare.py
+   ```
+
+## Usage
+1. Run the script and follow the interactive prompts to select a city, month, and day.
+2. View calculated statistics based on the selected filters.
+3. Choose to view individual data rows if desired.
+4. Restart or exit the program as needed.
+
+## Enhancements
+- Improved error handling for incorrect inputs.
+- Optimized performance for faster data filtering.
+- Enhanced interactive experience with clearer prompts.
+
+## Notes
+- Input validation ensures correct city, month, and day selection.
+- Some datasets lack gender and birth year data.
+- The program loops until the user decides to exit.
+
+## License
+This project is for educational purposes and follows an open-source license.
+
+## Contributing
+If you'd like to contribute to this project, feel free to fork the repository and submit a pull request with your improvements.
