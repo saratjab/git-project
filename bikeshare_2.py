@@ -1,6 +1,7 @@
 import time
 import pandas as pd
 import numpy as np
+import time
 
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york': 'new_york_city.csv',
@@ -174,16 +175,17 @@ def trip_duration_stats(df):
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
 
-    # display total travel time
-    print(f'total travel time: {df['Trip Duration'].sum()}')
+    # Calculate total and mean travel time
+    total_travel_time = df['Trip Duration'].sum()
+    mean_travel_time = df['Trip Duration'].mean()
 
-    # display mean travel time
-    print(f'total mean time: {df['Trip Duration'].mean()}')
+    # Display results
+    print(f'Total travel time: {total_travel_time}')
+    print(f'Mean travel time: {mean_travel_time}')
 
-
-    print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-'*40)
-
+    # Print execution time
+    print(f"\nThis took {time.time() - start_time:.2f} seconds.")
+    print('-' * 40)
 
 def user_stats(df):
     """Displays statistics on bikeshare users."""
